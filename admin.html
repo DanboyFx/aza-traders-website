@@ -155,3 +155,811 @@ value="umarfaruqbello722@gmail.com">
 <input
 type="password"
 id="password"
+placeholder="Admin Email"
+value="umarfaruqbello722@gmail.com">
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+<button onclick="login()">LOGIN</button>
+
+<p id="loginMessage"></p>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" style="display:none;">
+
+<h2>Welcome, AZA TRADERS Admin</h2>
+
+<button class="logout" onclick="logout()">LOGOUT</button>
+
+<nav>
+<button onclick="showSection('home')">Dashboard</button>
+<button onclick="showSection('courses')">Courses</button>
+<button onclick="showSection('brokers')">Brokers</button>
+<button onclick="showSection('tools')">Trading Tools</button>
+<button onclick="showSection('messages')">Messages</button>
+</nav>
+
+<p id="message"></p>
+<!-- HOME -->
+
+<div class="section" id="home" style="display:block;">
+
+<div class="card">
+<h2>Admin Dashboard</h2>
+<p>Manage your AZA TRADERS website from one place.</p>
+<br>
+<p>Courses: <span id="courseCount">0</span></p>
+<p>Brokers: <span id="brokerCount">0</span></p>
+<p>Trading Tools: <span id="toolCount">0</span></p>
+</div>
+
+</div>
+
+<!-- COURSES -->
+
+<div class="section" id="courses">
+
+<div class="card">
+
+<h2>Add New Course</h2>
+
+<input id="courseTitle" placeholder="Course Title">
+
+<textarea id="courseDescription" placeholder="Course Description"></textarea>
+
+<input id="courseImage" placeholder="Course Image URL">
+
+<input id="courseLink" placeholder="Course Link">
+
+<input id="coursePrice" type="number" step="0.01" placeholder="Course Price">
+
+<select id="courseStatus">
+<option value="active">Active</option>
+<option value="inactive">Inactive</option>
+</select>
+
+<button onclick="saveCourse()">SAVE COURSE</button>
+
+<button onclick="clearCourse()">CLEAR</button>
+
+<input type="hidden" id="courseId">
+
+</div>
+
+<div class="card">
+<h2>All Courses</h2>
+<div id="courseList"></div>
+</div>
+
+</div>
+
+<!-- BROKERS -->
+
+<div class="section" id="brokers">
+
+<div class="card">
+
+<h2>Add New Broker</h2>
+
+<input id="brokerName" placeholder="Broker Name">
+
+<textarea id="brokerDescription" placeholder="Broker Description"></textarea>
+
+<input id="brokerLogo" placeholder="Broker Logo URL">
+
+<input id="brokerLink" placeholder="Referral Link">
+
+<select id="brokerStatus">
+<option value="active">Active</option>
+<option value="inactive">Inactive</option>
+</select>
+
+<button onclick="saveBroker()">SAVE BROKER</button>
+
+<button onclick="clearBroker()">CLEAR</button>
+
+<input type="hidden" id="brokerId">
+
+</div>
+
+<div class="card">
+<h2>All Brokers</h2>
+<div id="brokerList"></div>
+</div>
+
+    </div>
+    <!-- TRADING TOOLS -->
+
+<div class="section" id="tools">
+
+<div class="card">
+
+<h2>Add Trading Tool</h2>
+
+<input id="toolTitle" placeholder="Tool Name">
+
+<textarea id="toolDescription" placeholder="Description"></textarea>
+
+<input id="toolIcon" placeholder="Icon or Image URL">
+
+<input id="toolLink" placeholder="Tool Link">
+
+<button onclick="saveTool()">SAVE TOOL</button>
+
+<button onclick="clearTool()">CLEAR</button>
+
+<input type="hidden" id="toolId">
+
+</div>
+
+<div class="card">
+<h2>All Trading Tools</h2>
+<div id="toolList"></div>
+</div>
+
+</div>
+
+<!-- MESSAGES -->
+
+<div class="section" id="messages">
+
+<div class="card">
+
+<h2>Contact Messages</h2>
+
+<div id="messageList"></div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+// SUPABASE CONNECTION
+
+const SUPABASE_URL = "https://qamffrirsesrxlidpchv.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_aW30DfXSwSzCQjaq9Dui_g_w0J_rLEo";
+
+const db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+// MESSAGE
+
+function notify(text) {
+    document.getElementById("message").textContent = text;
+}
+
+
+// LOGIN
+
+async function login() {
+
+    const email = document.getElementById("email").value.trim();
+
+    const password = document.getElementById("password").value;
+
+    const { data, error } = await db.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    if (error) {
+        document.getElementById("loginMessage").textContent = error.message;
+        return;
+    }
+
+    await checkAdmin();
+
+}
+
+
+// CHECK ADMIN ROLE
+
+async function checkAdmin() {
+
+    const { data: { user } } = await db.auth.getUser();
+
+    if (!user) return;
+
+    const { data, error } = await db
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
+        .maybeSingle();
+
+    if (error || !data || data.role !== "admin") {
+
+        alert("Access denied. Admin only.");
+
+        await db.auth.signOut();
+
+        return;
+    }
+
+    document.getElementById("loginBox").style.display = "none";
+
+    document.getElementById("dashboard").style.display = "block";
+
+    await loadAll();
+
+}
+    // LOGOUT
+
+async function logout() {
+
+    await db.auth.signOut();
+
+    location.reload();
+
+}
+
+
+// NAVIGATION
+
+function showSection(id) {
+
+    document.querySelectorAll(".section").forEach(section => {
+        section.style.display = "none";
+    });
+
+    document.getElementById(id).style.display = "block";
+
+}
+
+
+// COURSES
+
+async function loadCourses() {
+
+    const { data, error } = await db
+        .from("courses")
+        .select("*")
+        .order("created_at", {ascending:false});
+
+    if (error) {
+        notify(error.message);
+        return;
+    }
+
+    document.getElementById("courseCount").textContent = data.length;
+
+    const list = document.getElementById("courseList");
+
+    list.replaceChildren();
+
+    data.forEach(course => {
+
+        const div = document.createElement("div");
+
+        div.className = "item";
+
+        const title = document.createElement("h3");
+        title.textContent = course.title;
+
+        const description = document.createElement("p");
+        description.textContent = course.description || "";
+
+        const price = document.createElement("p");
+        price.textContent = "Price: " + (course.price ?? 0);
+
+        const status = document.createElement("p");
+        status.textContent = "Status: " + course.status;
+
+        const edit = document.createElement("button");
+        edit.textContent = "EDIT";
+        edit.className = "edit";
+        edit.onclick = () => editCourse(course);
+
+        const del = document.createElement("button");
+        del.textContent = "DELETE";
+        del.className = "delete";
+        del.onclick = () => deleteCourse(course.id);
+
+        div.append(title, description, price, status, edit, del);
+
+        list.appendChild(div);
+
+    });
+
+}
+
+
+// SAVE COURSE
+
+async function saveCourse() {
+
+    const id = document.getElementById("courseId").value;
+
+    const course = {
+
+        title: document.getElementById("courseTitle").value.trim(),
+
+        description: document.getElementById("courseDescription").value.trim(),
+
+        image_url: document.getElementById("courseImage").value.trim() || null,
+
+        course_url: document.getElementById("courseLink").value.trim() || null,
+
+        price: document.getElementById("coursePrice").value === ""
+            ? 0
+            : Number(document.getElementById("coursePrice").value),
+
+        status: document.getElementById("courseStatus").value
+
+    };
+
+    if (!course.title) {
+        alert("Enter course title");
+        return;
+    }
+
+    let result;
+
+    if (id) {
+
+        result = await db.from("courses").update(course).eq("id", id);
+
+    } else {
+
+        result = await db.from("courses").insert(course);
+
+    }
+
+    if (result.error) {
+        notify(result.error.message);
+        return;
+    }
+
+    clearCourse();
+
+    notify("Course saved successfully!");
+
+    await loadCourses();
+
+}
+
+
+function editCourse(c) {
+
+    document.getElementById("courseId").value = c.id;
+
+    document.getElementById("courseTitle").value = c.title || "";
+
+    document.getElementById("courseDescription").value = c.description || "";
+
+    document.getElementById("courseImage").value = c.image_url || "";
+
+    document.getElementById("courseLink").value = c.course_url || "";
+
+    document.getElementById("coursePrice").value = c.price ?? "";
+
+    document.getElementById("courseStatus").value = c.status || "active";
+
+    showSection("courses");
+
+}
+
+
+function clearCourse() {
+
+    ["courseId","courseTitle","courseDescription","courseImage","courseLink","coursePrice"].forEach(id => {
+
+        document.getElementById(id).value = "";
+
+    });
+
+    document.getElementById("courseStatus").value = "active";
+
+}
+
+
+async function deleteCourse(id) {
+
+    if (!confirm("Delete this course?")) return;
+
+    const { error } = await db.from("courses").delete().eq("id", id);
+
+    if (error) {
+        notify(error.message);
+        return;
+    }
+
+    notify("Course deleted!");
+
+    await loadCourses();
+
+}
+
+
+// BROKERS
+
+async function loadBrokers() {
+
+    const { data, error } = await db
+        .from("brokers")
+        .select("*")
+        .order("created_at", {ascending:false});
+
+    if (error) {
+        notify(error.message);
+        return;
+    }
+
+    document.getElementById("brokerCount").textContent = data.length;
+
+    const list = document.getElementById("brokerList");
+
+    list.replaceChildren();
+
+    data.forEach(b => {
+
+        const div = document.createElement("div");
+
+        div.className = "item";
+
+        const title = document.createElement("h3");
+        title.textContent = b.name;
+
+        const description = document.createElement("p");
+        description.textContent = b.description || "";
+
+        const link = document.createElement("p");
+        link.textContent = b.referral_link || "";
+
+        const status = document.createElement("p");
+        status.textContent = "Status: " + b.status;
+
+        const edit = document.createElement("button");
+        edit.textContent = "EDIT";
+        edit.className = "edit";
+        edit.onclick = () => editBroker(b);
+
+        const del = document.createElement("button");
+        del.textContent = "DELETE";
+        del.className = "delete";
+        del.onclick = () => deleteBroker(b.id);
+
+        div.append(title, description, link, status, edit, del);
+
+        list.appendChild(div);
+
+    });
+
+}
+
+
+async function saveBroker() {
+
+    const id = document.getElementById("brokerId").value;
+
+    const broker = {
+
+        name: document.getElementById("brokerName").value.trim(),
+
+        description: document.getElementById("brokerDescription").value.trim(),
+
+        logo_url: document.getElementById("brokerLogo").value.trim() || null,
+
+        referral_link: document.getElementById("brokerLink").value.trim() || null,
+
+        status: document.getElementById("brokerStatus").value
+
+    };
+
+    if (!broker.name) {
+        alert("Enter broker name");
+        return;
+    }
+
+    let result;
+
+    if (id) {
+
+        result = await db.from("brokers").update(broker).eq("id", id);
+
+    } else {
+
+        result = await db.from("brokers").insert(broker);
+
+    }
+
+    if (result.error) {
+        notify(result.error.message);
+        return;
+    }
+
+    clearBroker();
+
+    notify("Broker saved successfully!");
+
+    await loadBrokers();
+
+}
+
+
+function editBroker(b) {
+    document.getElementById("brokerId").value = b.id;
+
+    document.getElementById("brokerName").value = b.name || "";
+
+    document.getElementById("brokerDescription").value = b.description || "";
+
+    document.getElementById("brokerLogo").value = b.logo_url || "";
+
+    document.getElementById("brokerLink").value = b.referral_link || "";
+
+    document.getElementById("brokerStatus").value = b.status || "active";
+
+    showSection("brokers");
+
+}
+
+
+function clearBroker() {
+
+    ["brokerId","brokerName","brokerDescription","brokerLogo","brokerLink"].forEach(id => {
+
+        document.getElementById(id).value = "";
+
+    });
+
+    document.getElementById("brokerStatus").value = "active";
+
+}
+
+
+async function deleteBroker(id) {
+
+    if (!confirm("Delete this broker?")) return;
+
+    const { error } = await db.from("brokers").delete().eq("id", id);
+
+    if (error) {
+        notify(error.message);
+        return;
+    }
+
+    notify("Broker deleted!");
+
+    await loadBrokers();
+
+}
+
+
+// TRADING TOOLS
+
+async function loadTools() {
+
+    const { data, error } = await db
+        .from("trading_tools")
+        .select("*")
+        .order("created_at", {ascending:false});
+
+    if (error) {
+        notify(error.message);
+        return;
+    }
+
+    document.getElementById("toolCount").textContent = data.length;
+
+    const list = document.getElementById("toolList");
+
+    list.replaceChildren();
+
+    data.forEach(t => {
+
+        const div = document.createElement("div");
+
+        div.className = "item";
+
+        const title = document.createElement("h3");
+        title.textContent = t.title;
+
+        const description = document.createElement("p");
+        description.textContent = t.description || "";
+
+        const link = document.createElement("p");
+        link.textContent = t.tool_url || "";
+
+        const edit = document.createElement("button");
+        edit.textContent = "EDIT";
+        edit.className = "edit";
+        edit.onclick = () => editTool(t);
+
+        const del = document.createElement("button");
+        del.textContent = "DELETE";
+        del.className = "delete";
+        del.onclick = () => deleteTool(t.id);
+
+        div.append(title, description, link, edit, del);
+
+        list.appendChild(div);
+
+    });
+
+}
+
+
+async function saveTool() {
+
+    const id = document.getElementById("toolId").value;
+
+    const tool = {
+
+        title: document.getElementById("toolTitle").value.trim(),
+
+        description: document.getElementById("toolDescription").value.trim(),
+
+        icon: document.getElementById("toolIcon").value.trim() || null,
+
+        tool_url: document.getElementById("toolLink").value.trim() || null
+
+    };
+
+    if (!tool.title) {
+        alert("Enter tool name");
+        return;
+    }
+
+    let result;
+
+    if (id) {
+
+        result = await db.from("trading_tools").update(tool).eq("id", id);
+
+    } else {
+
+        result = await db.from("trading_tools").insert(tool);
+
+    }
+
+    if (result.error) {
+        notify(result.error.message);
+        return;
+    }
+
+    clearTool();
+
+    notify("Trading tool saved successfully!");
+
+    await loadTools();
+
+}
+
+
+function editTool(t) {
+
+    document.getElementById("toolId").value = t.id;
+
+    document.getElementById("toolTitle").value = t.title || "";
+
+    document.getElementById("toolDescription").value = t.description || "";
+
+    document.getElementById("toolIcon").value = t.icon || "";
+
+    document.getElementById("toolLink").value = t.tool_url || "";
+
+    showSection("tools");
+
+}
+
+
+function clearTool() {
+
+    ["toolId","toolTitle","toolDescription","toolIcon","toolLink"].forEach(id => {
+
+        document.getElementById(id).value = "";
+
+    });
+
+}
+
+
+async function deleteTool(id) {
+
+    if (!confirm("Delete this tool?")) return;
+
+    const { error } = await db.from("trading_tools").delete().eq("id", id);
+
+    if (error) {
+        notify(error.message);
+        return;
+    }
+
+    notify("Tool deleted!");
+
+    await loadTools();
+
+}
+
+
+// CONTACT MESSAGES
+
+async function loadMessages() {
+
+    const { data, error } = await db
+        .from("contact_messages")
+        .select("*")
+        .order("created_at", {ascending:false});
+
+    if (error) {
+        notify(error.message);
+        return;
+    }
+
+    const list = document.getElementById("messageList");
+
+    list.replaceChildren();
+
+    data.forEach(m => {
+
+        const div = document.createElement("div");
+
+        div.className = "item";
+
+        const name = document.createElement("h3");
+        name.textContent = m.full_name || "";
+
+        const email = document.createElement("p");
+        email.textContent = m.email || "";
+
+        const subject = document.createElement("p");
+        subject.textContent = m.subject || "";
+
+        const message = document.createElement("p");
+        message.textContent = m.message || "";
+
+        div.append(name, email, subject, message);
+
+        list.appendChild(div);
+
+    });
+
+}
+
+
+// LOAD EVERYTHING
+
+async function loadAll() {
+
+    await Promise.all([
+        loadCourses(),
+        loadBrokers(),
+        loadTools(),
+        loadMessages()
+    ]);
+
+}
+
+
+// CHECK EXISTING SESSION
+
+async function startApp() {
+
+    const { data: { session } } = await db.auth.getSession();
+
+    if (session) {
+        await checkAdmin();
+    }
+
+}
+
+startApp();
+
+</script>
+
+</body>
+</html>
