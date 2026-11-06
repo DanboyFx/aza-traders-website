@@ -8,7 +8,41 @@
 
 <meta name="description" content="AZA TRADERS - Learn financial markets, price action, forex trading and professional trading skills.">
 
-<style>
+.form-section {
+    background: #101b2d;
+    padding: 35px 20px;
+    margin: 25px auto;
+    max-width: 500px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+}
+
+.form-section h2 {
+    color: #00bfff;
+}
+
+.form-section input,
+.form-section textarea {
+    width: 90%;
+    padding: 14px;
+    margin: 10px 0;
+    border: 1px solid #263b55;
+    border-radius: 6px;
+    background: #07111f;
+    color: white;
+}
+
+.form-section button {
+    width: 95%;
+    padding: 14px;
+    background: #008cff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}<style>
 * {
     margin: 0;
     padding: 0;
@@ -512,45 +546,4 @@ document.getElementById("result").innerHTML =
 "<br>Stop Loss: " + stoploss + " pips" +
 "<br><br>Protect your capital. Trade responsibly.";
 }
-    </script><!-- REGISTRATION FORM -->
-<section id="register" class="form-section">
-    <h2>Create Your Account</h2>
-    <p>Join AZA TRADERS today.</p>
-
-    <form>
-        <input type="text" placeholder="Full Name" required>
-        <input type="email" placeholder="Email Address" required>
-        <input type="tel" placeholder="Phone Number" required>
-        <input type="password" placeholder="Create Password" required>
-        <input type="password" placeholder="Confirm Password" required>
-        <button type="submit">Register Now</button>
-    </form>
-</section>
-
-<!-- LOGIN FORM -->
-<section id="login" class="form-section">
-    <h2>Welcome Back</h2>
-    <p>Login to your AZA TRADERS account.</p>
-
-    <form>
-        <input type="email" placeholder="Email Address" required>
-        <input type="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
-</section>
-
-<!-- CONTACT FORM -->
-<section id="contact" class="form-section">
-    <h2>Contact AZA TRADERS</h2>
-    <p>We are here to help you.</p>
-
-    <form>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <input type="text" placeholder="Subject" required>
-        <textarea placeholder="Write your message..." required></textarea>
-        <button type="submit">Send Message</button>
-    </form>
-    </section>
-</body>
-    </html>
+</script>
