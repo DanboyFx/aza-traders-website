@@ -433,6 +433,85 @@ footer p {
     <p>Educational Purposes Only. Not Financial Advice.</p>
 
 </footer>
+<section id="live-tools" style="padding:60px 5%;background:#07111f;color:white;">
 
+<div class="section-title">
+<h2>LIVE TRADING CHARTS</h2>
+<p>Monitor financial markets in real time.</p>
+</div>
+
+<div style="background:#102139;padding:15px;border-radius:12px;">
+
+<div class="tradingview-widget-container">
+<div id="tradingview_chart" style="height:500px;width:100%;"></div>
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+
+<script>
+new TradingView.widget({
+"autosize": true,
+"symbol": "OANDA:XAUUSD",
+"interval": "60",
+"timezone": "Africa/Lagos",
+"theme": "dark",
+"style": "1",
+"locale": "en",
+"enable_publishing": false,
+"allow_symbol_change": true,
+"container_id": "tradingview_chart"
+});
+</script>
+
+</div>
+</div>
+</section>
+
+<section id="risk-calculator" style="padding:60px 5%;background:#0c1a2b;color:white;">
+
+<div class="section-title">
+<h2>RISK MANAGEMENT CALCULATOR</h2>
+<p>Calculate your trading risk before entering a trade.</p>
+</div>
+
+<div style="max-width:500px;margin:auto;background:#102139;padding:25px;border-radius:12px;">
+
+<label>Account Balance ($)</label>
+<input id="balance" type="number" placeholder="Example: 5000" style="width:100%;padding:12px;margin:10px 0 20px;">
+
+<label>Risk Percentage (%)</label>
+<input id="risk" type="number" placeholder="Example: 1" style="width:100%;padding:12px;margin:10px 0 20px;">
+
+<label>Stop Loss (Pips)</label>
+<input id="stoploss" type="number" placeholder="Example: 30" style="width:100%;padding:12px;margin:10px 0 20px;">
+
+<button onclick="calculateRisk()" style="width:100%;padding:14px;background:#168cff;color:white;border:none;border-radius:6px;font-weight:bold;">
+CALCULATE RISK
+</button>
+
+<div id="result" style="margin-top:25px;color:#35a6ff;font-size:18px;"></div>
+
+</div>
+</section>
+
+<script>
+function calculateRisk() {
+
+let balance = Number(document.getElementById("balance").value);
+let risk = Number(document.getElementById("risk").value);
+let stoploss = Number(document.getElementById("stoploss").value);
+
+if(balance <= 0 || risk <= 0 || risk > 100 || stoploss <= 0) {
+document.getElementById("result").innerHTML = "Please enter valid numbers.";
+return;
+}
+
+let amount = balance * risk / 100;
+
+document.getElementById("result").innerHTML =
+"Risk Amount: $" + amount.toFixed(2) +
+"<br>Stop Loss: " + stoploss + " pips" +
+"<br><br>Protect your capital. Trade responsibly.";
+}
+    </script>
 </body>
     </html>
