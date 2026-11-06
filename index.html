@@ -1,884 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AZA TRADERS | Trading Education</title>
-
-<meta name="description" content="AZA TRADERS - Learn financial markets, price action, forex trading and professional trading skills.">
-
+<meta name="description" content="AZA TRADERS — trading education, market tools and professional development.">
+<title>AZA TRADERS | Trading Academy</title>
 <style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
-
-body {
-    background: #07111f;
-    color: white;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-}
-
-header {
-    background: #0d1b2e;
-    padding: 18px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid #20344e;
-}
-
-.logo {
-    font-size: 25px;
-    font-weight: bold;
-    color: #35a6ff;
-}
-
-.logo span {
-    color: white;
-}
-
-.menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: #35a6ff;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-nav {
-    display: flex;
-    gap: 15px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-nav a:hover {
-    color: #35a6ff;
-}
-
-@media(max-width:700px) {
-
-    header {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .menu-btn {
-        display: block;
-    }
-
-    nav {
-        display: none;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: #0d1b2e;
-        flex-direction: column;
-        padding: 20px;
-        gap: 15px;
-    }
-
-    nav.active {
-        display: flex;
-    }
-
-    nav a {
-        font-size: 14px;
-    }
-
-    .hero {
-        padding: 80px 20px;
-    }
-
-    .hero h1 {
-        font-size: 34px;
-    }
-
-    section {
-        padding: 55px 20px;
-    }
-}
-
-
-.hero {
-    padding: 110px 7%;
-    text-align: center;
-    background: linear-gradient(135deg,#07111f,#102e50,#07111f);
-}
-
-.hero small {
-    color: #35a6ff;
-    letter-spacing: 3px;
-}
-
-.hero h1 {
-    font-size: 48px;
-    margin: 20px 0;
-    line-height: 1.2;
-}
-
-.hero h1 span {
-    color: #35a6ff;
-}
-
-.hero p {
-    max-width: 650px;
-    margin: auto;
-    color: #c4d0df;
-    font-size: 17px;
-}
-
-.button {
-    display: inline-block;
-    background: #168cff;
-    color: white;
-    text-decoration: none;
-    padding: 13px 27px;
-    border-radius: 6px;
-    margin-top: 28px;
-    font-weight: bold;
-}
-
-.button:hover {
-    background: #0871d0;
-}
-
-section {
-    padding: 75px 7%;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.section-title h2 {
-    color: #35a6ff;
-    font-size: 30px;
-}
-
-.section-title p {
-    color: #aebdd0;
-    margin-top: 10px;
-}
-
-.about {
-    text-align: center;
-    max-width: 850px;
-    margin: auto;
-}
-
-.about p {
-    color: #bdc9d8;
-}
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap: 22px;
-}
-
-.card {
-    background: #102139;
-    border: 1px solid #203c5d;
-    padding: 30px;
-    border-radius: 12px;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-    border-color: #35a6ff;
-}
-
-.card h3 {
-    color: #35a6ff;
-    margin-bottom: 12px;
-}
-
-.card p {
-    color: #bdc9d8;
-    font-size: 14px;
-}
-
-.market {
-    background: #0c1a2b;
-}
-
-.market-box {
-    background: #102139;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid #203c5d;
-}
-
-.market-box p {
-    color: #bdc9d8;
-}
-
-.education {
-    text-align: center;
-    background: #0c1a2b;
-}
-
-.form-section {
-    background: #101b2d;
-    padding: 35px 20px;
-    margin: 25px auto;
-    max-width: 500px;
-    border-radius: 12px;
-    color: white;
-    text-align: center;
-    border: 1px solid #203c5d;
-}
-
-.form-section h2 {
-    color: #00bfff;
-}
-
-.form-section input,
-.form-section textarea {
-    width: 90%;
-    padding: 14px;
-    margin: 10px 0;
-    border: 1px solid #263b55;
-    border-radius: 6px;
-    background: #07111f;
-    color: white;
-}
-
-.form-section textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.form-section button {
-    width: 95%;
-    padding: 14px;
-    background: #008cff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.form-section button:hover {
-    background: #0871d0;
-}
-
-.contact {
-    text-align: center;
-}
-
-footer {
-    background: #0d1b2e;
-    text-align: center;
-    padding: 30px 15px;
-    border-top: 1px solid #20344e;
-}
-
-footer p {
-    color: #9eafc4;
-    font-size: 13px;
-}
-
-input, textarea, button {
-    font-family: Arial, sans-serif;
-}
-
-@media(max-width:700px) {
-
-    header {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    nav {
-        justify-content: center;
-        gap: 12px;
-    }
-
-    nav a {
-        font-size: 12px;
-    }
-
-    .hero {
-        padding: 80px 20px;
-    }
-
-    .hero h1 {
-        font-size: 34px;
-    }
-
-    section {
-        padding: 55px 20px;
-    }
-
-}
-
+:root{--bg:#07111f;--panel:#0d1b2e;--panel2:#10243d;--line:#203b59;--blue:#35a6ff;--cyan:#67d5ff;--text:#f4f8ff;--muted:#a9bad0}
+*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}
+.topbar{height:76px;position:sticky;top:0;z-index:20;background:rgba(7,17,31,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 5%;gap:18px}
+.brand{font-size:23px;font-weight:900;letter-spacing:1px;color:var(--blue)}.brand span{color:white}
+.menu-btn{width:46px;height:42px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--blue);font-size:25px;cursor:pointer;order:-1}
+.top-actions{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 19px;border-radius:9px;border:1px solid transparent;background:linear-gradient(135deg,#168cff,#0874d5);color:white;font-weight:700;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.12)}.btn-outline{background:transparent;border-color:#315574;color:#dcecff}
+.drawer-backdrop{position:fixed;inset:0;background:#0009;z-index:29;opacity:0;visibility:hidden;transition:.25s}
+.drawer{position:fixed;top:0;bottom:0;left:0;width:min(310px,86vw);background:#0b192b;border-right:1px solid var(--line);z-index:30;padding:24px 18px;transform:translateX(-105%);transition:.25s;display:flex;flex-direction:column;gap:8px}
+.drawer.open{transform:translateX(0)}.drawer-backdrop.show{opacity:1;visibility:visible}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:5px 4px 22px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.close-btn{background:transparent;border:0;color:white;font-size:27px;cursor:pointer}
+.drawer a{padding:12px 14px;border-radius:9px;color:#d1deed;font-weight:600}
+.drawer a:hover{background:#132d49;color:var(--cyan)}
+.drawer-note{margin-top:auto;padding:15px;background:#10243d;border:1px solid var(--line);border-radius:12px;color:var(--muted);font-size:12px}
+.hero{padding:100px 7% 95px;background:radial-gradient(ellipse at 50% 0%,#164a78 0%,#0b2038 42%,#07111f 78%);text-align:center}
+.eyebrow{color:var(--cyan);font-size:12px;letter-spacing:3px;font-weight:800}
+.hero h1{font-size:clamp(38px,7vw,68px);line-height:1.08;margin:20px auto;max-width:900px;font-weight:900;letter-spacing:-1.5px}
+.hero h1 span{color:var(--blue)}.hero p{max-width:680px;margin:0 auto;color:#c0cede;font-size:17px}
+.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
+.stats{max-width:950px;margin:45px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{padding:17px;background:#0d2138b8;border:1px solid #315574;border-radius:12px}.stat strong{display:block;color:var(--cyan);font-size:20px}.stat small{color:var(--muted)}
+section{padding:78px 7%}.section-head{text-align:center;margin:0 auto 38px;max-width:700px}.section-head .eyebrow{letter-spacing:2px}.section-head h2{font-size:clamp(25px,4vw,36px);margin:8px 0;color:#f4f8ff}.section-head p{color:var(--muted)}
+.about-copy{max-width:850px;margin:auto;text-align:center;color:#c3d0df;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:linear-gradient(145deg,#10243d,#0b1b2e);border:1px solid var(--line);border-radius:15px;padding:25px;min-height:170px;transition:.2s}
+.card:hover{transform:translateY(-5px);border-color:#3c9fe8}.icon{width:42px;height:42px;border-radius:12px;background:#12385a;color:var(--cyan);display:grid;place-items:center;font-size:20px;margin-bottom:17px}
+.card h3{color:#eaf5ff;font-size:17px;margin-bottom:8px}.card p{color:var(--muted);font-size:14px}
+.soft{background:#0a192a}.market-panel{background:linear-gradient(120deg,#102b48,#0d1d31);border:1px solid var(--line);border-radius:16px;padding:30px;text-align:center}
+.market-panel p{color:var(--muted);margin:8px auto 4px;max-width:650px}
+.chart-wrap{background:#0d1b2e;border:1px solid var(--line);border-radius:15px;padding:12px;overflow:hidden}.chart-box{height:500px;width:100%}
+.tool-box{max-width:560px;margin:auto;background:#0d1b2e;border:1px solid var(--line);border-radius:16px;padding:26px}
+label{display:block;color:#dce9f8;font-size:13px;font-weight:700;margin:12px 0 6px}
+.field{width:100%;padding:13px 14px;border-radius:9px;border:1px solid #29435f;background:#071321;color:white;outline:none}
+.field:focus{border-color:var(--blue);box-shadow:0 0 0 3px #168cff20}
+.result{margin-top:18px;padding:15px;background:#102b48;border-radius:10px;color:var(--cyan);min-height:50px}
+.auth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:900px;margin:auto}
+.modal-backdrop{position:fixed;inset:0;background:#020812df;z-index:60;display:none;align-items:center;justify-content:center;padding:18px;overflow-y:auto}
+.modal-backdrop.show{display:flex}.modal{width:min(520px,100%);max-height:92vh;overflow-y:auto;background:#0b1b2e;border:1px solid #315574;border-radius:18px;padding:25px;box-shadow:0 25px 80px #0009;position:relative}
+.modal-close{position:absolute;right:17px;top:12px;border:0;background:transparent;color:#dcecff;font-size:30px;cursor:pointer}
+.modal-brand{color:var(--blue);font-weight:900;font-size:19px;margin-bottom:14px}.modal-brand span{color:white}
+.modal-tabs{display:flex;gap:8px;margin:14px 0 20px}.modal-tab{flex:1;border:1px solid var(--line);border-radius:9px;padding:10px;background:#10243d;color:#c8d8e9;cursor:pointer;font-weight:700}.modal-tab.active{background:#168cff;color:white;border-color:#168cff}
+.modal-panel{display:none}.modal-panel.active{display:block}.modal-panel h2{font-size:24px;margin-bottom:4px}.modal-panel>p{color:var(--muted);font-size:14px;margin-bottom:14px}.modal-panel .btn{width:100%;margin-top:17px}
+body.modal-open{overflow:hidden}
+.form-card{background:#0d1b2e;border:1px solid var(--line);border-radius:16px;padding:25px}
+.form-card h3{font-size:22px;margin-bottom:5px}.form-card>p{color:var(--muted);font-size:14px;margin-bottom:15px}
+.form-card .btn{width:100%;margin-top:17px}
+.notice{font-size:12px;color:#93a9c2;margin-top:12px}
+footer{padding:35px 7%;text-align:center;background:#081522;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+footer .brand{margin-bottom:8px}
+@media(max-width:650px){.topbar{height:68px;padding:0 4%}.brand{font-size:19px}.top-actions .btn{padding:9px 11px;font-size:12px}.hero{padding:76px 6%}.hero p{font-size:15px}.stats{grid-template-columns:1fr}.stat{padding:12px}section{padding:60px 5%}.chart-box{height:390px}.tool-box,.form-card{padding:20px}}
 </style>
-
 </head>
-
 <body>
-
-<header>
-
-    <div class="logo">AZA <span>TRADERS</span></div>
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#markets">Markets</a>
-        <a href="#education">Courses</a>
-        <a href="#charts">Charts</a>
-        <a href="#calculator">Calculator</a>
-        <a href="#brokers">Brokers</a>
-        <a href="#register">Register</a>
-        <a href="#login">Login</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
+<header class="topbar">
+  <button class="menu-btn" aria-label="Open navigation menu" onclick="toggleMenu()">☰</button>
+  <a class="brand" href="#home">AZA <span>TRADERS</span></a>
+  <div class="top-actions"><button class="btn btn-outline" type="button" onclick="openAuth('login')">Login</button><button class="btn" type="button" onclick="openAuth('register')">Sign Up</button></div>
 </header>
 
+<div class="drawer-backdrop" id="backdrop" onclick="closeMenu()"></div>
+<nav class="drawer" id="drawer" aria-label="Main navigation">
+  <div class="drawer-head"><div class="brand">AZA <span>TRADERS</span></div><button class="close-btn" onclick="closeMenu()" aria-label="Close menu">×</button></div>
+  <a href="#home" onclick="closeMenu()">⌂ &nbsp; Home</a>
+  <a href="#about" onclick="closeMenu()">◈ &nbsp; About</a>
+  <a href="#markets" onclick="closeMenu()">▤ &nbsp; Markets</a>
+  <a href="#education" onclick="closeMenu()">▣ &nbsp; Courses</a>
+  <a href="#charts" onclick="closeMenu()">⌁ &nbsp; Live Charts</a>
+  <a href="#calculator" onclick="closeMenu()">▦ &nbsp; Risk Calculator</a>
+  <a href="#brokers" onclick="closeMenu()">◉ &nbsp; Brokers</a>
+  <a href="#copy-trading" onclick="closeMenu()">⟳ &nbsp; Copy Trading</a>
+  <a href="#best-prop" onclick="closeMenu()">★ &nbsp; Best Prop Firms</a>
+  <a href="#" onclick="closeMenu();openAuth('register');return false">＋ &nbsp; Sign Up</a>
+  <a href="#" onclick="closeMenu();openAuth('login');return false">↪ &nbsp; Login</a>
+  <a href="#" onclick="closeMenu();openContact();return false">✉ &nbsp; Contact</a>
+  <div class="drawer-note">Learn. Analyze. Trade. Grow.<br>Trading education for every level.</div>
+</nav>
 
-<!-- HOME -->
-
+<main>
 <div class="hero" id="home">
-
-    <small>WELCOME TO AZA TRADING ACADEMY</small>
-
-    <h1>
-        MASTER THE <span>MARKETS.</span><br>
-        BUILD YOUR FUTURE.
-    </h1>
-
-    <p>
-        Learn. Analyze. Trade. Grow.
-        Discover financial markets, develop your trading
-        knowledge and build professional trading skills.
-    </p>
-
-    <a href="#markets" class="button">
-        Explore Our Platform
-    </a>
-
+  <div class="eyebrow">WELCOME TO AZA TRADING ACADEMY</div>
+  <h1>MASTER THE <span>MARKETS.</span><br>BUILD YOUR FUTURE.</h1>
+  <p>Learn. Analyze. Trade. Grow. Build your understanding of financial markets through practical trading education, useful tools and disciplined learning.</p>
+  <div class="hero-actions"><a class="btn" href="#education">Explore Academy</a><a class="btn btn-outline" href="#register">Create Free Account</a></div>
+  <div class="stats">
+    <div class="stat"><strong>Learn</strong><small>Structured trading education</small></div>
+    <div class="stat"><strong>Practice</strong><small>Charts and risk tools</small></div>
+    <div class="stat"><strong>Improve</strong><small>Discipline and consistency</small></div>
+  </div>
 </div>
 
-
-<!-- ABOUT -->
-
 <section id="about">
-
-    <div class="section-title">
-        <h2>ABOUT AZA TRADERS</h2>
-        <p>Who We Are</p>
-    </div>
-
-    <div class="about">
-
-        <p>
-            AZA TRADERS is an educational platform dedicated
-            to financial markets, trading education, price
-            action analysis and professional development.
-
-            Our mission is to make trading education more
-            accessible and help individuals understand
-            how financial markets operate.
-        </p>
-
-    </div>
-
+  <div class="section-head"><div class="eyebrow">OUR PURPOSE</div><h2>ABOUT AZA TRADERS</h2><p>Education first. Discipline always.</p></div>
+  <div class="about-copy">AZA TRADERS is an educational platform dedicated to financial markets, price action analysis, risk management and professional development. Our mission is to make trading education accessible and help learners understand how markets work. We focus on knowledge, practice and responsible decision-making.</div>
 </section>
 
-
-<!-- MARKETS -->
-
-<section id="markets">
-
-    <div class="section-title">
-        <h2>EXPLORE FINANCIAL MARKETS</h2>
-        <p>Discover different financial markets.</p>
-    </div>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>FOREX MARKET</h3>
-            <p>
-                Learn currency trading, price action,
-                market structure and forex fundamentals.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>STOCK MARKET</h3>
-            <p>
-                Understand stocks, company shares,
-                investing and market fundamentals.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>INDEX MARKET</h3>
-            <p>
-                Explore financial indices and
-                understand market movements.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>GOLD MARKET</h3>
-            <p>
-                Understand XAUUSD, gold price movements
-                and important market factors.
-            </p>
-        </div>
-
-    </div>
-
+<section class="soft" id="markets">
+  <div class="section-head"><div class="eyebrow">EXPLORE</div><h2>FINANCIAL MARKETS</h2><p>Build a foundation across different markets.</p></div>
+  <div class="grid">
+    <article class="card"><div class="icon">↗</div><h3>Forex Market</h3><p>Learn currency pairs, pips, spreads, sessions and price action fundamentals.</p></article>
+    <article class="card"><div class="icon">▥</div><h3>Stock Market</h3><p>Understand shares, companies, investing concepts and market fundamentals.</p></article>
+    <article class="card"><div class="icon">▤</div><h3>Index Market</h3><p>Explore indices and learn what can move broad market prices.</p></article>
+    <article class="card"><div class="icon">◆</div><h3>Gold Market</h3><p>Study XAUUSD, gold price behaviour and important economic drivers.</p></article>
+  </div>
 </section>
 
-
-<!-- MARKET WATCH -->
-
-<section class="market">
-
-    <div class="section-title">
-        <h2>MARKET WATCH</h2>
-        <p>Stay informed about financial markets.</p>
-    </div>
-
-    <div class="market-box">
-
-        <h3>GLOBAL FINANCIAL MARKETS</h3>
-
-        <p>
-            Follow market movements, economic events
-            and important financial developments.
-        </p>
-
-        <a href="https://www.tradingview.com/markets/"
-           class="button" target="_blank">
-           Explore Live Markets
-        </a>
-
-    </div>
-
+<section>
+  <div class="section-head"><div class="eyebrow">STAY INFORMED</div><h2>MARKET WATCH</h2><p>Explore market information and financial developments.</p></div>
+  <div class="market-panel"><h3>GLOBAL FINANCIAL MARKETS</h3><p>Follow market movements, economic events and financial developments using trusted market resources.</p><a class="btn" href="https://www.tradingview.com/markets/" target="_blank" rel="noopener">Explore Live Markets ↗</a></div>
 </section>
 
-
-<!-- EDUCATION -->
-
-<section id="education">
-
-    <div class="section-title">
-        <h2>TRADING EDUCATION</h2>
-        <p>Knowledge is the foundation of success.</p>
-    </div>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>PRICE ACTION</h3>
-            <p>
-                Understand candlesticks, support,
-                resistance and market structure.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>RISK MANAGEMENT</h3>
-            <p>
-                Learn position sizing, risk-to-reward
-                and capital protection.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>TRADING PSYCHOLOGY</h3>
-            <p>
-                Develop discipline, patience
-                and emotional control.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>TECHNICAL ANALYSIS</h3>
-            <p>
-                Learn how to study charts
-                and understand price movements.
-            </p>
-        </div>
-
-    </div>
-
+<section class="soft" id="education">
+  <div class="section-head"><div class="eyebrow">AZA ACADEMY</div><h2>TRADING EDUCATION</h2><p>Knowledge is the foundation of better decisions.</p></div>
+  <div class="grid">
+    <article class="card"><div class="icon">▧</div><h3>Price Action</h3><p>Understand candlesticks, support, resistance, trends and market structure.</p></article>
+    <article class="card"><div class="icon">◈</div><h3>Risk Management</h3><p>Learn position sizing, risk-to-reward and capital protection.</p></article>
+    <article class="card"><div class="icon">◎</div><h3>Trading Psychology</h3><p>Develop patience, discipline and emotional control.</p></article>
+    <article class="card"><div class="icon">⌁</div><h3>Technical Analysis</h3><p>Learn to read charts and interpret price movements.</p></article>
+  </div>
 </section>
 
-
-<!-- LIVE CHARTS -->
-
-<section id="charts" style="background:#07111f;">
-
-    <div class="section-title">
-        <h2>LIVE TRADING CHARTS</h2>
-        <p>Monitor financial markets in real time.</p>
-    </div>
-
-    <div style="background:#102139;padding:15px;border-radius:12px;">
-
-        <div class="tradingview-widget-container">
-
-            <div id="tradingview_chart"
-                 style="height:500px;width:100%;">
-            </div>
-
-        </div>
-
-    </div>
-
+<section id="charts">
+  <div class="section-head"><div class="eyebrow">MARKET TOOLS</div><h2>LIVE TRADING CHART</h2><p>Monitor XAUUSD using the TradingView chart.</p></div>
+  <div class="chart-wrap"><div id="tradingview_chart" class="chart-box"></div></div>
 </section>
 
-
-<!-- CALCULATOR -->
-
-<section id="calculator" style="background:#0c1a2b;">
-
-    <div class="section-title">
-        <h2>RISK MANAGEMENT CALCULATOR</h2>
-        <p>Calculate your trading risk before entering a trade.</p>
-    </div>
-
-    <div style="max-width:500px;margin:auto;background:#102139;padding:25px;border-radius:12px;">
-
-        <label>Account Balance ($)</label>
-
-        <input id="balance" type="number"
-        placeholder="Example: 5000"
-        style="width:100%;padding:12px;margin:10px 0 20px;">
-
-        <label>Risk Percentage (%)</label>
-
-        <input id="risk" type="number"
-        placeholder="Example: 1"
-        style="width:100%;padding:12px;margin:10px 0 20px;">
-
-        <label>Stop Loss (Pips)</label>
-
-        <input id="stoploss" type="number"
-        placeholder="Example: 30"
-        style="width:100%;padding:12px;margin:10px 0 20px;">
-
-        <button onclick="calculateRisk()"
-        style="width:100%;padding:14px;background:#168cff;color:white;border:none;border-radius:6px;font-weight:bold;">
-
-        CALCULATE RISK
-
-        </button>
-
-        <div id="result"
-        style="margin-top:25px;color:#35a6ff;font-size:18px;">
-        </div>
-
-    </div>
-
+<section class="soft" id="calculator">
+  <div class="section-head"><div class="eyebrow">TRADE RESPONSIBLY</div><h2>RISK CALCULATOR</h2><p>Estimate the cash amount at risk before entering a trade.</p></div>
+  <div class="tool-box">
+    <label for="balance">Account Balance (USD)</label><input class="field" id="balance" type="number" min="0" step="any" placeholder="Example: 5000">
+    <label for="risk">Risk Percentage (%)</label><input class="field" id="risk" type="number" min="0" max="100" step="any" placeholder="Example: 1">
+    <label for="stoploss">Stop Loss (Pips)</label><input class="field" id="stoploss" type="number" min="0" step="any" placeholder="Example: 30">
+    <button class="btn" style="width:100%;margin-top:18px" onclick="calculateRisk()">Calculate Risk</button>
+    <div class="result" id="result" aria-live="polite">Your result will appear here.</div>
+    <p class="notice">This tool estimates risk amount only. It does not calculate lot size because pip value differs by instrument and account currency.</p>
+  </div>
 </section>
-
-
-<!-- BROKERS -->
 
 <section id="brokers">
-
-    <div class="section-title">
-        <h2>TRADING BROKERS</h2>
-        <p>Explore trading platforms and brokerage services.</p>
-    </div>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>FOREX BROKERS</h3>
-            <p>
-                Learn how forex brokers work and
-                understand their trading conditions.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>TRADING PLATFORMS</h3>
-            <p>
-                Discover MetaTrader 5, TradingView
-                and other trading platforms.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>BROKER EDUCATION</h3>
-            <p>
-                Understand spreads, commissions,
-                leverage and trading risks.
-            </p>
-        </div>
-
-    </div>
-
+  <div class="section-head"><div class="eyebrow">TRADING ACCESS</div><h2>BROKERS & PLATFORMS</h2><p>Learn the important details before choosing a provider.</p></div>
+  <div class="grid">
+    <article class="card"><div class="icon">◉</div><h3>Forex Brokers</h3><p>Understand regulation, execution, spreads and trading conditions.</p></article>
+    <article class="card"><div class="icon">▦</div><h3>Trading Platforms</h3><p>Discover MetaTrader 5, TradingView and other charting platforms.</p></article>
+    <article class="card"><div class="icon">✓</div><h3>Broker Education</h3><p>Learn about commissions, leverage, swaps and trading risks.</p></article>
+  </div>
 </section>
 
-
-<!-- COURSES -->
-
-<section id="courses" style="background:#0c1a2b;">
-
-    <div class="section-title">
-        <h2>AZA TRADING COURSES</h2>
-        <p>Develop your trading knowledge with AZA TRADERS.</p>
-    </div>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>BEGINNER COURSE</h3>
-            <p>
-                Introduction to Forex, candlesticks,
-                pips, lots and trading basics.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>PRICE ACTION COURSE</h3>
-            <p>
-                Learn support, resistance, trends,
-                breakouts and retests.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>PROFESSIONAL DEVELOPMENT</h3>
-            <p>
-                Learn trading discipline,
-                risk management and consistency.
-            </p>
-        </div>
-
-    </div>
-
+<section id="copy-trading">
+  <div class="section-head"><div class="eyebrow">TRADING SERVICES</div><h2>COPY TRADING</h2><p>Learn how copy trading works before choosing a provider.</p></div>
+  <div class="grid">
+    <article class="card"><div class="icon">⟳</div><h3>What Is Copy Trading?</h3><p>Understand how trades from another trader may be copied into your account, including the benefits, limitations and risks.</p></article>
+    <article class="card"><div class="icon">◎</div><h3>Choosing a Strategy Provider</h3><p>Review trading history, drawdown, risk per trade, strategy age and transparency. Past performance does not guarantee future results.</p></article>
+    <article class="card"><div class="icon">⚠</div><h3>Risk Comes First</h3><p>Copy trading can lead to losses. Check the provider, platform rules and risk settings, and never invest money you cannot afford to lose.</p></article>
+  </div>
 </section>
 
-
-<!-- REGISTRATION -->
-
-<section id="register">
-
-    <div class="form-section">
-
-        <h2>Create Your Account</h2>
-
-        <p>Join AZA TRADERS today.</p>
-
-        <form onsubmit="demoForm(event,'Registration')">
-
-            <input type="text"
-            placeholder="Full Name" required>
-
-            <input type="email"
-            placeholder="Email Address" required>
-
-            <input type="tel"
-            placeholder="Phone Number" required>
-
-            <input type="password"
-            placeholder="Create Password" required>
-
-            <input type="password"
-            placeholder="Confirm Password" required>
-
-            <button type="submit">
-                Register Now
-            </button>
-
-        </form>
-
-    </div>
-
+<section class="soft" id="best-prop">
+  <div class="section-head"><div class="eyebrow">PROP FIRM GUIDE</div><h2>BEST PROP FIRMS</h2><p>Compare prop trading firms carefully before paying for an evaluation.</p></div>
+  <div class="grid">
+    <article class="card"><div class="icon">★</div><h3>Compare Trading Rules</h3><p>Check daily loss limits, maximum drawdown, consistency rules, news trading and weekend holding policies.</p></article>
+    <article class="card"><div class="icon">▤</div><h3>Understand Payout Terms</h3><p>Review payout frequency, minimum trading days, profit split, verification requirements and any withdrawal conditions.</p></article>
+    <article class="card"><div class="icon">✓</div><h3>Check Before You Buy</h3><p>Read the current official terms, restricted strategies, refund policy and company details. Rules and offers can change.</p></article>
+  </div>
+  <div class="market-panel" style="margin-top:20px"><h3>Make an informed decision</h3><p>AZA TRADERS provides educational information only. We do not guarantee funding, profits or payouts, and this section is not a paid endorsement.</p></div>
 </section>
 
-
-<!-- LOGIN -->
-
-<section id="login">
-
-    <div class="form-section">
-
-        <h2>Welcome Back</h2>
-
-        <p>Login to your AZA TRADERS account.</p>
-
-        <form onsubmit="demoForm(event,'Login')">
-
-            <input type="email"
-            placeholder="Email Address" required>
-
-            <input type="password"
-            placeholder="Password" required>
-
-            <button type="submit">
-                Login
-            </button>
-
-        </form>
-
-    </div>
-
+<section class="soft" id="courses">
+  <div class="section-head"><div class="eyebrow">LEARN WITH PURPOSE</div><h2>AZA TRADING COURSES</h2><p>Learning paths for different experience levels.</p></div>
+  <div class="grid">
+    <article class="card"><div class="icon">01</div><h3>Beginner Course</h3><p>Introduction to forex, candlesticks, pips, lots and trading basics.</p></article>
+    <article class="card"><div class="icon">02</div><h3>Price Action Course</h3><p>Learn support, resistance, trends, breakouts and retests.</p></article>
+    <article class="card"><div class="icon">03</div><h3>Trader Development</h3><p>Build a trading plan, manage risk and work toward consistency.</p></article>
+  </div>
 </section>
 
+</main>
 
-<!-- CONTACT -->
-
-<section id="contact">
-
-    <div class="section-title">
-        <h2>CONTACT AZA TRADERS</h2>
-        <p>We are here to help you.</p>
+<!-- HIDDEN ACCOUNT AND CONTACT WINDOWS: OPEN ONLY WHEN A USER SELECTS LOGIN / SIGN UP / CONTACT -->
+<div class="modal-backdrop" id="accountModal" onclick="if(event.target===this)closeModal()" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" type="button" onclick="closeModal()" aria-label="Close">×</button>
+    <div class="modal-brand">AZA <span>TRADERS</span></div>
+    <div id="accountArea">
+      <div class="modal-tabs">
+        <button class="modal-tab" id="loginTab" type="button" onclick="showAuthPanel('login')">Login</button>
+        <button class="modal-tab" id="registerTab" type="button" onclick="showAuthPanel('register')">Sign Up</button>
+      </div>
+      <form class="modal-panel" id="registerPanel" onsubmit="authNotice(event,'Registration')">
+        <h2 id="modalTitle">Become a Member</h2><p>Create your AZA TRADERS learner account.</p>
+        <label for="regname">Full Name</label><input class="field" id="regname" type="text" autocomplete="name" required placeholder="Your full name">
+        <label for="regemail">Email Address</label><input class="field" id="regemail" type="email" autocomplete="email" required placeholder="name@example.com">
+        <label for="regphone">Phone Number</label><input class="field" id="regphone" type="tel" autocomplete="tel" required placeholder="+234...">
+        <label for="regpass">Create Password</label><input class="field" id="regpass" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters">
+        <button class="btn" type="submit">Create Account</button>
+        <p class="notice">Secure registration and personal dashboards will be activated after the authentication backend is connected. Do not enter a real password yet.</p>
+      </form>
+      <form class="modal-panel" id="loginPanel" onsubmit="authNotice(event,'Login')">
+        <h2>Welcome Back</h2><p>Login to access your AZA TRADERS member dashboard.</p>
+        <label for="loginemail">Email Address</label><input class="field" id="loginemail" type="email" autocomplete="email" required placeholder="name@example.com">
+        <label for="loginpass">Password</label><input class="field" id="loginpass" type="password" autocomplete="current-password" required placeholder="Your password">
+        <button class="btn" type="submit">Login</button>
+        <p class="notice">Login and dashboard access will work after secure authentication is configured.</p>
+      </form>
     </div>
-
-    <div class="form-section">
-
-        <h2>Send Us A Message</h2>
-
-        <form onsubmit="demoForm(event,'Contact')">
-
-            <input type="text"
-            placeholder="Your Name" required>
-
-            <input type="email"
-            placeholder="Your Email" required>
-
-            <input type="text"
-            placeholder="Subject" required>
-
-            <textarea
-            placeholder="Write your message..."
-            required></textarea>
-
-            <button type="submit">
-                Send Message
-            </button>
-
-        </form>
-
-    </div>
-
-</section>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-    <div class="logo">AZA TRADERS</div>
-
-    <p>Learn. Analyze. Trade. Grow.</p>
-
-    <p>
-        © 2026 AZA TRADERS.
-        All Rights Reserved.
-    </p>
-
-    <p>
-        Educational Purposes Only. Not Financial Advice.
-    </p>
-
-</footer>
-
-
-<!-- JAVASCRIPT -->
-
-<script src="https://s3.tradingview.com/tv.js"></script>
-
-<script>
-
-new TradingView.widget({
-
-    "autosize": true,
-    "symbol": "OANDA:XAUUSD",
-    "interval": "60",
-    "timezone": "Africa/Lagos",
-    "theme": "dark",
-    "style": "1",
-    "locale": "en",
-    "enable_publishing": false,
-    "allow_symbol_change": true,
-    "container_id": "tradingview_chart"
-
-});
-
-
-function calculateRisk() {
-
-    let balance = Number(
-        document.getElementById("balance").value
-    );
-
-    let risk = Number(
-        document.getElementById("risk").value
-    );
-
-    let stoploss = Number(
-        document.getElementById("stoploss").value
-    );
-
-    if(balance <= 0 || risk <= 0 || risk > 100 || stoploss <= 0) {
-
-        document.getElementById("result").innerHTML =
-        "Please enter valid numbers.";
-
-        return;
-
-    }
-
-    let amount = balance * risk / 100;
-
-    document.getElementById("result").innerHTML =
-
-    "Risk Amount: $" + amount.toFixed(2) +
-
-    "<br>Stop Loss: " + stoploss + " pips" +
-
-    "<br><br>Protect your capital. Trade responsibly.";
-
-}
-
-
-function demoForm(event,formName) {
-
-    event.preventDefault();
-
-    alert(formName + " form design is working. Backend connection is required to process your information.");
-
-}
-function toggleMenu() {
-    document.querySelector("nav").classList.toggle("active");
-    }
-</script>
-
-</body>
-    </html>
+    <form class="modal-panel" id="contactPanel" onsubmit="contactNotice(event)">
+      <h2>Contact AZA TRADERS</h2><p>Have a question about the academy? Send us a message.</p>
+      <label for="contactname">Your Name</label><input class="field" id="contactname" required placeholder="Your name">
+      <label for="contactemail">Your Email
