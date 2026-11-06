@@ -216,4 +216,34 @@ footer .brand{margin-bottom:8px}
     <form class="modal-panel" id="contactPanel" onsubmit="contactNotice(event)">
       <h2>Contact AZA TRADERS</h2><p>Have a question about the academy? Send us a message.</p>
       <label for="contactname">Your Name</label><input class="field" id="contactname" required placeholder="Your name">
-      <label for="contactemail">Your Email
+      <label for="contactemail">Your Email</label><input class="field" id="contactemail" type="email" required placeholder="name@example.com">
+      <label for="subject">Subject</label><input class="field" id="subject" required placeholder="How can we help?">
+      <label for="message">Message</label><textarea class="field" id="message" rows="5" required placeholder="Write your message..."></textarea>
+      <button class="btn" type="submit">Send Message</button><p class="notice">Message delivery needs an email or backend service connection.</p>
+    </form>
+  </div>
+</div>
+
+<footer><div class="brand">AZA <span>TRADERS</span></div><p>Learn. Analyze. Trade. Grow.</p><p>© 2026 AZA TRADERS. All Rights Reserved.</p><p>Educational purposes only. Not financial advice.</p></footer>
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script>
+function toggleMenu(){document.getElementById('drawer').classList.toggle('open');document.getElementById('backdrop').classList.toggle('show')}
+function closeMenu(){document.getElementById('drawer').classList.remove('open');document.getElementById('backdrop').classList.remove('show')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();closeModal()}});
+function openAuth(which){const modal=document.getElementById('accountModal');document.getElementById('accountArea').style.display='block';document.getElementById('contactPanel').classList.remove('active');modal.classList.add('show');modal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');showAuthPanel(which)}
+function showAuthPanel(which){document.getElementById('loginPanel').classList.toggle('active',which==='login');document.getElementById('registerPanel').classList.toggle('active',which==='register');document.getElementById('loginTab').classList.toggle('active',which==='login');document.getElementById('registerTab').classList.toggle('active',which==='register')}
+function openContact(){const modal=document.getElementById('accountModal');document.getElementById('accountArea').style.display='none';document.getElementById('loginPanel').classList.remove('active');document.getElementById('registerPanel').classList.remove('active');document.getElementById('contactPanel').classList.add('active');modal.classList.add('show');modal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open')}
+function closeModal(){const modal=document.getElementById('accountModal');modal.classList.remove('show');modal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}
+function calculateRisk(){
+ const balance=Number(document.getElementById('balance').value),risk=Number(document.getElementById('risk').value),sl=Number(document.getElementById('stoploss').value);
+ const out=document.getElementById('result');
+ if(!Number.isFinite(balance)||!Number.isFinite(risk)||!Number.isFinite(sl)||balance<=0||risk<=0||risk>100||sl<=0){out.textContent='Please enter a positive balance, risk between 0 and 100, and stop loss.';return}
+ out.innerHTML='Risk Amount: <strong>$'+(balance*risk/100).toFixed(2)+'</strong><br>Stop Loss: '+sl+' pips<br><br>Protect your capital. Trade responsibly.';
+}
+function authNotice(e,type){if(e)e.preventDefault();alert(type+' is a design preview only. Secure registration, login and personal dashboards must be connected to an authentication backend before launch.');}
+function contactNotice(e){e.preventDefault();alert('The contact form design is ready. Message delivery needs a backend or email service connection.');}
+if(window.TradingView){new TradingView.widget({autosize:true,symbol:'OANDA:XAUUSD',interval:'60',timezone:'Africa/Lagos',theme:'dark',style:'1',locale:'en',enable_publishing:false,allow_symbol_change:true,container_id:'tradingview_chart'});}
+</script>
+</body>
+</html>
