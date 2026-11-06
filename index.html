@@ -3,126 +3,236 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AZA TRADERS | Trading Academy</title>
+
+<title>AZA TRADERS | Trading Education</title>
+
+<meta name="description" content="AZA TRADERS - Learn financial markets, price action, forex trading and professional trading skills.">
 
 <style>
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #08111f;
+    background: #07111f;
     color: white;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
 }
 
 header {
-    background: #101d30;
-    padding: 20px;
+    background: #0d1b2e;
+    padding: 18px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #20344e;
 }
 
 .logo {
-    color: #38a5ff;
     font-size: 25px;
     font-weight: bold;
+    color: #35a6ff;
+}
+
+.logo span {
+    color: white;
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    margin-left: 15px;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #35a6ff;
 }
 
 .hero {
+    padding: 110px 7%;
     text-align: center;
-    padding: 100px 20px;
-    background: linear-gradient(135deg,#08111f,#12345a);
+    background: linear-gradient(135deg,#07111f,#102e50,#07111f);
+}
+
+.hero small {
+    color: #35a6ff;
+    letter-spacing: 3px;
 }
 
 .hero h1 {
-    font-size: 42px;
-    margin-bottom: 20px;
+    font-size: 48px;
+    margin: 20px 0;
+    line-height: 1.2;
 }
 
-.hero span {
-    color: #38a5ff;
+.hero h1 span {
+    color: #35a6ff;
 }
 
 .hero p {
-    color: #cbd5e1;
-    line-height: 1.7;
+    max-width: 650px;
+    margin: auto;
+    color: #c4d0df;
+    font-size: 17px;
 }
 
-.btn {
+.button {
     display: inline-block;
     background: #168cff;
     color: white;
-    padding: 14px 25px;
-    margin-top: 25px;
-    border-radius: 7px;
     text-decoration: none;
+    padding: 13px 27px;
+    border-radius: 6px;
+    margin-top: 28px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: #0871d0;
 }
 
 section {
-    padding: 60px 20px;
-    text-align: center;
+    padding: 75px 7%;
 }
 
-h2 {
-    color: #38a5ff;
-    margin-bottom: 25px;
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    color: #35a6ff;
+    font-size: 30px;
+}
+
+.section-title p {
+    color: #aebdd0;
+    margin-top: 10px;
+}
+
+.about {
+    text-align: center;
+    max-width: 850px;
+    margin: auto;
+}
+
+.about p {
+    color: #bdc9d8;
 }
 
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: auto;
+    gap: 22px;
 }
 
 .card {
-    background: #14243a;
+    background: #102139;
+    border: 1px solid #203c5d;
     padding: 30px;
     border-radius: 12px;
-    border: 1px solid #263e5c;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: #35a6ff;
 }
 
 .card h3 {
-    margin-bottom: 15px;
-    color: #38a5ff;
+    color: #35a6ff;
+    margin-bottom: 12px;
 }
 
 .card p {
-    color: #cbd5e1;
-    line-height: 1.6;
+    color: #bdc9d8;
+    font-size: 14px;
+}
+
+.market {
+    background: #0c1a2b;
+}
+
+.market-box {
+    background: #102139;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #203c5d;
+}
+
+.market-box p {
+    color: #bdc9d8;
+}
+
+.education {
+    text-align: center;
+    background: #0c1a2b;
+}
+
+.education p {
+    color: #bdc9d8;
+    max-width: 650px;
+    margin: auto;
+}
+
+.contact {
+    text-align: center;
+}
+
+.contact p {
+    color: #bdc9d8;
 }
 
 footer {
-    background: #101d30;
+    background: #0d1b2e;
     text-align: center;
-    padding: 25px;
-    color: #94a3b8;
+    padding: 30px 15px;
+    border-top: 1px solid #20344e;
 }
 
-@media(max-width:600px) {
+footer p {
+    color: #9eafc4;
+    font-size: 13px;
+}
+
+@media(max-width:700px) {
+
     header {
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
     }
 
     nav a {
-        margin: 5px;
-        font-size: 13px;
+        margin: 0;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 80px 20px;
     }
 
     .hero h1 {
-        font-size: 32px;
+        font-size: 34px;
+    }
+
+    section {
+        padding: 55px 20px;
     }
 }
 </style>
@@ -131,88 +241,198 @@ footer {
 <body>
 
 <header>
-    <div class="logo">AZA TRADERS</div>
+    <div class="logo">AZA <span>TRADERS</span></div>
 
     <nav>
         <a href="#home">Home</a>
         <a href="#about">About</a>
+        <a href="#markets">Markets</a>
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
 
 <div class="hero" id="home">
-    <h1>WELCOME TO <span>AZA TRADERS</span></h1>
+
+    <small>WELCOME TO AZA TRADING ACADEMY</small>
+
+    <h1>
+        MASTER THE <span>MARKETS.</span><br>
+        BUILD YOUR FUTURE.
+    </h1>
 
     <p>
-        Learn. Analyze. Trade. Grow.<br>
-        Your Journey Towards Trading Excellence Starts Here.
+        Learn. Analyze. Trade. Grow.
+        Discover financial markets, develop your trading
+        knowledge and build professional trading skills.
     </p>
 
-    <a href="#education" class="btn">Explore Our Academy</a>
+    <a href="#markets" class="button">Explore Our Platform</a>
+
 </div>
 
 <section id="about">
-    <h2>ABOUT AZA TRADERS</h2>
 
-    <p>
-        AZA TRADERS is an educational platform dedicated
-        to financial markets, trading knowledge,
-        price action analysis and professional development.
-    </p>
+    <div class="section-title">
+        <h2>ABOUT AZA TRADERS</h2>
+        <p>Who We Are</p>
+    </div>
+
+    <div class="about">
+        <p>
+            AZA TRADERS is an educational platform dedicated
+            to financial markets, trading education, price
+            action analysis and professional development.
+
+            Our mission is to make trading education more
+            accessible and help individuals understand
+            how financial markets operate.
+        </p>
+    </div>
+
 </section>
 
-<section id="education">
-    <h2>OUR EDUCATIONAL SECTIONS</h2>
+<section id="markets">
+
+    <div class="section-title">
+        <h2>EXPLORE FINANCIAL MARKETS</h2>
+        <p>Discover different financial markets.</p>
+    </div>
 
     <div class="cards">
 
         <div class="card">
-            <h3>Forex Market</h3>
-            <p>Learn currency trading, market structure
-            and price action strategies.</p>
+            <h3>FOREX MARKET</h3>
+            <p>
+                Learn currency trading, price action,
+                market structure and forex fundamentals.
+            </p>
         </div>
 
         <div class="card">
-            <h3>Stock Market</h3>
-            <p>Understand stocks, investing and
-            financial market fundamentals.</p>
+            <h3>STOCK MARKET</h3>
+            <p>
+                Understand stocks, company shares,
+                investing and market fundamentals.
+            </p>
         </div>
 
         <div class="card">
-            <h3>Index Market</h3>
-            <p>Explore indices and understand
-            how financial markets operate.</p>
+            <h3>INDEX MARKET</h3>
+            <p>
+                Explore financial indices and
+                understand market movements.
+            </p>
         </div>
 
         <div class="card">
-            <h3>Trading Psychology</h3>
-            <p>Develop discipline, patience
-            and professional trading habits.</p>
+            <h3>GOLD MARKET</h3>
+            <p>
+                Understand XAUUSD, gold price movements
+                and important market factors.
+            </p>
         </div>
 
     </div>
+
 </section>
 
-<section>
-    <h2>OUR MISSION</h2>
-    <p>
-        To provide accessible trading education
-        and help individuals develop informed
-        financial market knowledge.
-    </p>
+<section class="market">
+
+    <div class="section-title">
+        <h2>MARKET WATCH</h2>
+        <p>Stay informed about financial markets.</p>
+    </div>
+
+    <div class="market-box">
+        <h3>GLOBAL FINANCIAL MARKETS</h3>
+
+        <p>
+            Follow market movements, economic events
+            and important financial developments.
+        </p>
+
+        <a href="https://www.tradingview.com/markets/"
+           class="button" target="_blank">
+           Explore Live Markets
+        </a>
+    </div>
+
+</section>
+
+<section id="education">
+
+    <div class="section-title">
+        <h2>TRADING EDUCATION</h2>
+        <p>Knowledge is the foundation of success.</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>PRICE ACTION</h3>
+            <p>
+                Understand candlesticks, support,
+                resistance and market structure.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>RISK MANAGEMENT</h3>
+            <p>
+                Learn position sizing, risk-to-reward
+                and capital protection.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>TRADING PSYCHOLOGY</h3>
+            <p>
+                Develop discipline, patience
+                and emotional control.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>TECHNICAL ANALYSIS</h3>
+            <p>
+                Learn how to study charts
+                and understand price movements.
+            </p>
+        </div>
+
+    </div>
+
 </section>
 
 <section id="contact">
-    <h2>CONTACT US</h2>
-    <p>Welcome to AZA TRADERS.</p>
-    <p>More contact options coming soon.</p>
+
+    <div class="section-title">
+        <h2>CONTACT AZA TRADERS</h2>
+        <p>Connect with our platform.</p>
+    </div>
+
+    <p style="text-align:center;">
+        More educational resources and contact
+        options are coming soon.
+    </p>
+
 </section>
 
 <footer>
-    <p>© 2026 AZA TRADERS. All Rights Reserved.</p>
+
+    <div class="logo">AZA TRADERS</div>
+
     <p>Learn. Analyze. Trade. Grow.</p>
+
+    <p>
+        © 2026 AZA TRADERS.
+        All Rights Reserved.
+    </p>
+
+    <p>Educational Purposes Only. Not Financial Advice.</p>
+
 </footer>
 
 </body>
-  </html>
+    </html>
