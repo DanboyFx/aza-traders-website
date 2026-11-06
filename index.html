@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="AZA TRADERS — trading education, market tools and professional development.">
@@ -241,7 +242,60 @@ function calculateRisk(){
  if(!Number.isFinite(balance)||!Number.isFinite(risk)||!Number.isFinite(sl)||balance<=0||risk<=0||risk>100||sl<=0){out.textContent='Please enter a positive balance, risk between 0 and 100, and stop loss.';return}
  out.innerHTML='Risk Amount: <strong>$'+(balance*risk/100).toFixed(2)+'</strong><br>Stop Loss: '+sl+' pips<br><br>Protect your capital. Trade responsibly.';
 }
-function authNotice(e,type){if(e)e.preventDefault();alert(type+' is a design preview only. Secure registration, login and personal dashboards must be connected to an authentication backend before launch.');}
+const db = window.supabase.createClient(
+  'https://qamffrirsesrxlidpchv.supabase.co',
+  'sb_publishable_aW30DfXSwSzCQjaq9Dui_g_w0J_rLEo'
+);
+
+async function authNotice(e, type) {
+  e.preventDefault();
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Please wait...';
+
+  try {
+    if (type === 'Registration') {
+      const full_name = document.getElementById('regname').value.trim();
+      const email = document.getElementById('regemail').value.trim();
+      const phone = document.getElementById('regphone').value.trim();
+      const password = document.getElementById('regpass').value;
+
+      const { error } = await db.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { full_name, phone }
+        }
+      });
+
+      if (error) throw error;
+
+      alert('Registration successful! Check your email for confirmation.');
+      e.target.reset();
+
+    } else {
+      const email = document.getElementById('loginemail').value.trim();
+      const password = document.getElementById('loginpass').value;
+
+      const { error } = await db.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) throw error;
+
+      alert('Login successful!');
+      closeModal();
+    }
+
+  } catch (error) {
+    alert(error.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = type === 'Registration' ? 'Create Account' : 'Login';
+  }
+    }{if(e)e.preventDefault();alert(type+' is a design preview only. Secure registration, login and personal dashboards must be connected to an authentication backend before launch.');}
 function contactNotice(e){e.preventDefault();alert('The contact form design is ready. Message delivery needs a backend or email service connection.');}
 if(window.TradingView){new TradingView.widget({autosize:true,symbol:'OANDA:XAUUSD',interval:'60',timezone:'Africa/Lagos',theme:'dark',style:'1',locale:'en',enable_publishing:false,allow_symbol_change:true,container_id:'tradingview_chart'});}
 </script>
