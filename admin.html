@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>AZA TRADERS | Admin Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 * {
@@ -30,14 +33,9 @@ header h1 {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: auto;
     padding: 20px;
-}
-
-h2 {
-    margin: 25px 0 15px;
-    color: #168cff;
 }
 
 .card {
@@ -45,6 +43,11 @@ h2 {
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
+}
+
+h2 {
+    color: #168cff;
+    margin-bottom: 15px;
 }
 
 input, textarea, select {
@@ -59,27 +62,71 @@ input, textarea, select {
 button {
     background: #168cff;
     color: white;
-    padding: 12px 20px;
+    padding: 12px 18px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    margin-top: 8px;
+    margin: 5px;
 }
 
 button:hover {
     background: #0066cc;
 }
 
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+nav button {
+    flex: 1;
+}
+
 .item {
     background: #193653;
     padding: 15px;
-    margin-top: 10px;
-    border-radius: 7px;
+    margin-top: 12px;
+    border-radius: 8px;
     overflow-wrap: anywhere;
 }
 
 .delete {
     background: #dc3545;
+}
+
+.edit {
+    background: #198754;
+}
+
+.section {
+    display: none;
+}
+
+#loginBox {
+    max-width: 450px;
+    margin: 60px auto;
+}
+
+small {
+    color: #aabbd0;
+}
+
+#message {
+    margin: 12px 0;
+    color: #4dffae;
+}
+
+.logout {
+    background: #dc3545;
+}
+
+@media(max-width:600px) {
+    nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }
 </style>
 </head>
@@ -93,139 +140,18 @@ button:hover {
 
 <div class="container">
 
-<h2>Welcome, Admin</h2>
+<!-- LOGIN -->
 
-<div class="card">
-<h3>Website Management</h3>
-<p>Manage your AZA TRADERS educational content.</p>
-</div>
+<div class="card" id="loginBox">
 
-<div class="card">
-<h2>Add New Course</h2>
+<h2>Admin Login</h2>
 
-<input id="courseTitle" placeholder="Course Title">
+<input
+type="email"
+id="email"
+placeholder="Admin Email"
+value="umarfaruqbello722@gmail.com">
 
-<textarea id="courseDescription" placeholder="Course Description"></textarea>
-
-<input id="courseLink" placeholder="Course Link">
-
-<button onclick="addCourse()">Add Course</button>
-
-<div id="courseList"></div>
-</div>
-
-<div class="card">
-<h2>Add Broker</h2>
-
-<input id="brokerName" placeholder="Broker Name">
-
-<input id="brokerLink" placeholder="Registration Link">
-
-<button onclick="addBroker()">Add Broker</button>
-
-<div id="brokerList"></div>
-</div>
-
-<div class="card">
-<h2>Add Prop Firm</h2>
-
-<input id="propName" placeholder="Prop Firm Name">
-
-<input id="propLink" placeholder="Website Link">
-
-<button onclick="addProp()">Add Prop Firm</button>
-
-<div id="propList"></div>
-</div>
-
-</div>
-
-<script>
-
-function saveData(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-}
-
-function getData(key) {
-    return JSON.parse(localStorage.getItem(key) || "[]");
-}
-
-function addItem(key, values, listId) {
-    if (values.some(value => !value.trim())) {
-        alert("Please fill in all fields.");
-        return;
-    }
-
-    const data = getData(key);
-    data.push(values);
-    saveData(key, data);
-    renderItems(key, listId);
-}
-
-function renderItems(key, listId) {
-    const data = getData(key);
-    const list = document.getElementById(listId);
-
-    list.innerHTML = "";
-
-    data.forEach((item, index) => {
-        const div = document.createElement("div");
-        div.className = "item";
-
-        const title = document.createElement("h3");
-        title.textContent = item[0];
-
-        const description = document.createElement("p");
-        description.textContent = item[1];
-
-        const link = document.createElement("p");
-        link.textContent = item[2] || "";
-
-        const del = document.createElement("button");
-        del.textContent = "Delete";
-        del.className = "delete";
-
-        del.onclick = function() {
-            const updated = getData(key);
-            updated.splice(index, 1);
-            saveData(key, updated);
-            renderItems(key, listId);
-        };
-
-        div.append(title, description, link, del);
-        list.appendChild(div);
-    });
-}
-
-function addCourse() {
-    addItem("aza_courses", [
-        document.getElementById("courseTitle").value,
-        document.getElementById("courseDescription").value,
-        document.getElementById("courseLink").value
-    ], "courseList");
-}
-
-function addBroker() {
-    addItem("aza_brokers", [
-        document.getElementById("brokerName").value,
-        document.getElementById("brokerLink").value,
-        ""
-    ], "brokerList");
-}
-
-function addProp() {
-    addItem("aza_props", [
-        document.getElementById("propName").value,
-        document.getElementById("propLink").value,
-        ""
-    ], "propList");
-}
-
-renderItems("aza_courses", "courseList");
-renderItems("aza_brokers", "brokerList");
-renderItems("aza_props", "propList");
-
-</script>
-
-</body>
- </html>
+<input
+type="password"
+id="password"
