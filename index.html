@@ -47,11 +47,47 @@ header {
 .logo span {
     color: white;
 }
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: #35a6ff;
+    font-size: 30px;
+    cursor: pointer;
+}
 
 nav {
     display: flex;
-    flex-wrap: wrap;
     gap: 15px;
+}
+
+@media(max-width:700px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #0d1b2e;
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    nav.active {
+        display: flex;
+    }
+    }
+
 }
 
 nav a {
@@ -291,7 +327,7 @@ input, textarea, button {
 <header>
 
     <div class="logo">AZA <span>TRADERS</span></div>
-
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
     <nav>
         <a href="#home">Home</a>
         <a href="#about">About</a>
@@ -822,7 +858,9 @@ function demoForm(event,formName) {
     alert(formName + " form design is working. Backend connection is required to process your information.");
 
 }
-
+function toggleMenu() {
+    document.querySelector("nav").classList.toggle("active");
+    }
 </script>
 
 </body>
