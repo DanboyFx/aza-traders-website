@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,41 +10,8 @@
 
 <meta name="description" content="AZA TRADERS - Learn financial markets, price action, forex trading and professional trading skills.">
 
-.form-section {
-    background: #101b2d;
-    padding: 35px 20px;
-    margin: 25px auto;
-    max-width: 500px;
-    border-radius: 12px;
-    color: white;
-    text-align: center;
-}
+<style>
 
-.form-section h2 {
-    color: #00bfff;
-}
-
-.form-section input,
-.form-section textarea {
-    width: 90%;
-    padding: 14px;
-    margin: 10px 0;
-    border: 1px solid #263b55;
-    border-radius: 6px;
-    background: #07111f;
-    color: white;
-}
-
-.form-section button {
-    width: 95%;
-    padding: 14px;
-    background: #008cff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-}<style>
 * {
     margin: 0;
     padding: 0;
@@ -79,11 +48,16 @@ header {
     color: white;
 }
 
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
 nav a {
     color: white;
     text-decoration: none;
-    margin-left: 20px;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 nav a:hover {
@@ -212,18 +186,54 @@ section {
     background: #0c1a2b;
 }
 
-.education p {
-    color: #bdc9d8;
-    max-width: 650px;
-    margin: auto;
+.form-section {
+    background: #101b2d;
+    padding: 35px 20px;
+    margin: 25px auto;
+    max-width: 500px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    border: 1px solid #203c5d;
+}
+
+.form-section h2 {
+    color: #00bfff;
+}
+
+.form-section input,
+.form-section textarea {
+    width: 90%;
+    padding: 14px;
+    margin: 10px 0;
+    border: 1px solid #263b55;
+    border-radius: 6px;
+    background: #07111f;
+    color: white;
+}
+
+.form-section textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-section button {
+    width: 95%;
+    padding: 14px;
+    background: #008cff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-section button:hover {
+    background: #0871d0;
 }
 
 .contact {
     text-align: center;
-}
-
-.contact p {
-    color: #bdc9d8;
 }
 
 footer {
@@ -238,6 +248,10 @@ footer p {
     font-size: 13px;
 }
 
+input, textarea, button {
+    font-family: Arial, sans-serif;
+}
+
 @media(max-width:700px) {
 
     header {
@@ -246,14 +260,11 @@ footer p {
     }
 
     nav {
-        display: flex;
-        flex-wrap: wrap;
         justify-content: center;
         gap: 12px;
     }
 
     nav a {
-        margin: 0;
         font-size: 12px;
     }
 
@@ -268,23 +279,36 @@ footer p {
     section {
         padding: 55px 20px;
     }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
 <header>
+
     <div class="logo">AZA <span>TRADERS</span></div>
 
     <nav>
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#markets">Markets</a>
-        <a href="#education">Education</a>
+        <a href="#education">Courses</a>
+        <a href="#charts">Charts</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#brokers">Brokers</a>
+        <a href="#register">Register</a>
+        <a href="#login">Login</a>
         <a href="#contact">Contact</a>
     </nav>
+
 </header>
+
+
+<!-- HOME -->
 
 <div class="hero" id="home">
 
@@ -301,9 +325,14 @@ footer p {
         knowledge and build professional trading skills.
     </p>
 
-    <a href="#markets" class="button">Explore Our Platform</a>
+    <a href="#markets" class="button">
+        Explore Our Platform
+    </a>
 
 </div>
+
+
+<!-- ABOUT -->
 
 <section id="about">
 
@@ -313,6 +342,7 @@ footer p {
     </div>
 
     <div class="about">
+
         <p>
             AZA TRADERS is an educational platform dedicated
             to financial markets, trading education, price
@@ -322,9 +352,13 @@ footer p {
             accessible and help individuals understand
             how financial markets operate.
         </p>
+
     </div>
 
 </section>
+
+
+<!-- MARKETS -->
 
 <section id="markets">
 
@@ -371,6 +405,9 @@ footer p {
 
 </section>
 
+
+<!-- MARKET WATCH -->
+
 <section class="market">
 
     <div class="section-title">
@@ -379,6 +416,7 @@ footer p {
     </div>
 
     <div class="market-box">
+
         <h3>GLOBAL FINANCIAL MARKETS</h3>
 
         <p>
@@ -390,9 +428,13 @@ footer p {
            class="button" target="_blank">
            Explore Live Markets
         </a>
+
     </div>
 
 </section>
+
+
+<!-- EDUCATION -->
 
 <section id="education">
 
@@ -439,19 +481,263 @@ footer p {
 
 </section>
 
+
+<!-- LIVE CHARTS -->
+
+<section id="charts" style="background:#07111f;">
+
+    <div class="section-title">
+        <h2>LIVE TRADING CHARTS</h2>
+        <p>Monitor financial markets in real time.</p>
+    </div>
+
+    <div style="background:#102139;padding:15px;border-radius:12px;">
+
+        <div class="tradingview-widget-container">
+
+            <div id="tradingview_chart"
+                 style="height:500px;width:100%;">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CALCULATOR -->
+
+<section id="calculator" style="background:#0c1a2b;">
+
+    <div class="section-title">
+        <h2>RISK MANAGEMENT CALCULATOR</h2>
+        <p>Calculate your trading risk before entering a trade.</p>
+    </div>
+
+    <div style="max-width:500px;margin:auto;background:#102139;padding:25px;border-radius:12px;">
+
+        <label>Account Balance ($)</label>
+
+        <input id="balance" type="number"
+        placeholder="Example: 5000"
+        style="width:100%;padding:12px;margin:10px 0 20px;">
+
+        <label>Risk Percentage (%)</label>
+
+        <input id="risk" type="number"
+        placeholder="Example: 1"
+        style="width:100%;padding:12px;margin:10px 0 20px;">
+
+        <label>Stop Loss (Pips)</label>
+
+        <input id="stoploss" type="number"
+        placeholder="Example: 30"
+        style="width:100%;padding:12px;margin:10px 0 20px;">
+
+        <button onclick="calculateRisk()"
+        style="width:100%;padding:14px;background:#168cff;color:white;border:none;border-radius:6px;font-weight:bold;">
+
+        CALCULATE RISK
+
+        </button>
+
+        <div id="result"
+        style="margin-top:25px;color:#35a6ff;font-size:18px;">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BROKERS -->
+
+<section id="brokers">
+
+    <div class="section-title">
+        <h2>TRADING BROKERS</h2>
+        <p>Explore trading platforms and brokerage services.</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>FOREX BROKERS</h3>
+            <p>
+                Learn how forex brokers work and
+                understand their trading conditions.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>TRADING PLATFORMS</h3>
+            <p>
+                Discover MetaTrader 5, TradingView
+                and other trading platforms.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>BROKER EDUCATION</h3>
+            <p>
+                Understand spreads, commissions,
+                leverage and trading risks.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COURSES -->
+
+<section id="courses" style="background:#0c1a2b;">
+
+    <div class="section-title">
+        <h2>AZA TRADING COURSES</h2>
+        <p>Develop your trading knowledge with AZA TRADERS.</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>BEGINNER COURSE</h3>
+            <p>
+                Introduction to Forex, candlesticks,
+                pips, lots and trading basics.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>PRICE ACTION COURSE</h3>
+            <p>
+                Learn support, resistance, trends,
+                breakouts and retests.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>PROFESSIONAL DEVELOPMENT</h3>
+            <p>
+                Learn trading discipline,
+                risk management and consistency.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REGISTRATION -->
+
+<section id="register">
+
+    <div class="form-section">
+
+        <h2>Create Your Account</h2>
+
+        <p>Join AZA TRADERS today.</p>
+
+        <form onsubmit="demoForm(event,'Registration')">
+
+            <input type="text"
+            placeholder="Full Name" required>
+
+            <input type="email"
+            placeholder="Email Address" required>
+
+            <input type="tel"
+            placeholder="Phone Number" required>
+
+            <input type="password"
+            placeholder="Create Password" required>
+
+            <input type="password"
+            placeholder="Confirm Password" required>
+
+            <button type="submit">
+                Register Now
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section id="login">
+
+    <div class="form-section">
+
+        <h2>Welcome Back</h2>
+
+        <p>Login to your AZA TRADERS account.</p>
+
+        <form onsubmit="demoForm(event,'Login')">
+
+            <input type="email"
+            placeholder="Email Address" required>
+
+            <input type="password"
+            placeholder="Password" required>
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
 <section id="contact">
 
     <div class="section-title">
         <h2>CONTACT AZA TRADERS</h2>
-        <p>Connect with our platform.</p>
+        <p>We are here to help you.</p>
     </div>
 
-    <p style="text-align:center;">
-        More educational resources and contact
-        options are coming soon.
-    </p>
+    <div class="form-section">
+
+        <h2>Send Us A Message</h2>
+
+        <form onsubmit="demoForm(event,'Contact')">
+
+            <input type="text"
+            placeholder="Your Name" required>
+
+            <input type="email"
+            placeholder="Your Email" required>
+
+            <input type="text"
+            placeholder="Subject" required>
+
+            <textarea
+            placeholder="Write your message..."
+            required></textarea>
+
+            <button type="submit">
+                Send Message
+            </button>
+
+        </form>
+
+    </div>
 
 </section>
+
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -464,86 +750,80 @@ footer p {
         All Rights Reserved.
     </p>
 
-    <p>Educational Purposes Only. Not Financial Advice.</p>
+    <p>
+        Educational Purposes Only. Not Financial Advice.
+    </p>
 
 </footer>
-<section id="live-tools" style="padding:60px 5%;background:#07111f;color:white;">
 
-<div class="section-title">
-<h2>LIVE TRADING CHARTS</h2>
-<p>Monitor financial markets in real time.</p>
-</div>
 
-<div style="background:#102139;padding:15px;border-radius:12px;">
-
-<div class="tradingview-widget-container">
-<div id="tradingview_chart" style="height:500px;width:100%;"></div>
+<!-- JAVASCRIPT -->
 
 <script src="https://s3.tradingview.com/tv.js"></script>
 
 <script>
+
 new TradingView.widget({
-"autosize": true,
-"symbol": "OANDA:XAUUSD",
-"interval": "60",
-"timezone": "Africa/Lagos",
-"theme": "dark",
-"style": "1",
-"locale": "en",
-"enable_publishing": false,
-"allow_symbol_change": true,
-"container_id": "tradingview_chart"
+
+    "autosize": true,
+    "symbol": "OANDA:XAUUSD",
+    "interval": "60",
+    "timezone": "Africa/Lagos",
+    "theme": "dark",
+    "style": "1",
+    "locale": "en",
+    "enable_publishing": false,
+    "allow_symbol_change": true,
+    "container_id": "tradingview_chart"
+
 });
-</script>
 
-</div>
-</div>
-</section>
 
-<section id="risk-calculator" style="padding:60px 5%;background:#0c1a2b;color:white;">
-
-<div class="section-title">
-<h2>RISK MANAGEMENT CALCULATOR</h2>
-<p>Calculate your trading risk before entering a trade.</p>
-</div>
-
-<div style="max-width:500px;margin:auto;background:#102139;padding:25px;border-radius:12px;">
-
-<label>Account Balance ($)</label>
-<input id="balance" type="number" placeholder="Example: 5000" style="width:100%;padding:12px;margin:10px 0 20px;">
-
-<label>Risk Percentage (%)</label>
-<input id="risk" type="number" placeholder="Example: 1" style="width:100%;padding:12px;margin:10px 0 20px;">
-
-<label>Stop Loss (Pips)</label>
-<input id="stoploss" type="number" placeholder="Example: 30" style="width:100%;padding:12px;margin:10px 0 20px;">
-
-<button onclick="calculateRisk()" style="width:100%;padding:14px;background:#168cff;color:white;border:none;border-radius:6px;font-weight:bold;">
-CALCULATE RISK
-</button>
-
-<div id="result" style="margin-top:25px;color:#35a6ff;font-size:18px;"></div>
-
-</div>
-</section>
-
-<script>
 function calculateRisk() {
 
-let balance = Number(document.getElementById("balance").value);
-let risk = Number(document.getElementById("risk").value);
-let stoploss = Number(document.getElementById("stoploss").value);
+    let balance = Number(
+        document.getElementById("balance").value
+    );
 
-if(balance <= 0 || risk <= 0 || risk > 100 || stoploss <= 0) {
-document.getElementById("result").innerHTML = "Please enter valid numbers.";
-return;
+    let risk = Number(
+        document.getElementById("risk").value
+    );
+
+    let stoploss = Number(
+        document.getElementById("stoploss").value
+    );
+
+    if(balance <= 0 || risk <= 0 || risk > 100 || stoploss <= 0) {
+
+        document.getElementById("result").innerHTML =
+        "Please enter valid numbers.";
+
+        return;
+
+    }
+
+    let amount = balance * risk / 100;
+
+    document.getElementById("result").innerHTML =
+
+    "Risk Amount: $" + amount.toFixed(2) +
+
+    "<br>Stop Loss: " + stoploss + " pips" +
+
+    "<br><br>Protect your capital. Trade responsibly.";
+
 }
 
-let amount = balance * risk / 100;
 
-document.getElementById("result").innerHTML =
-"Risk Amount: $" + amount.toFixed(2) +
-"<br>Stop Loss: " + stoploss + " pips" +
-"<br><br>Protect your capital. Trade responsibly.";
+function demoForm(event,formName) {
+
+    event.preventDefault();
+
+    alert(formName + " form design is working. Backend connection is required to process your information.");
+
 }
+
 </script>
+
+</body>
+    </html>
